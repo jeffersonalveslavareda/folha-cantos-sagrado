@@ -1,4 +1,4 @@
-const API = "COLE_AQUI_A_MESMA_URL_DO_GOOGLE_SCRIPT";
+const API = "https://script.google.com/macros/s/SEU_CODIGO_AQUI/exec";
 
 fetch(API)
   .then(response => response.json())
