@@ -41,55 +41,54 @@ function mostrarCantos(lista) {
 
 }
 
-document.getElementById("pesquisa").addEventListener("input", function () {
-
-  const texto = this.value.toLowerCase();
-
-  const filtrados = cantos.filter(c =>
-    c.nome.toLowerCase().includes(texto)
-  );
-
-  mostrarCantos(filtrados);
-
-});
-
 document.getElementById("gerarPDF").addEventListener("click", () => {
 
   const { jsPDF } = window.jspdf;
 
-  const pdf = new jsPDF();
+  const pdf = new jsPDF({
+    orientation: "portrait",
+    unit: "mm",
+    format: "a4"
+  });
 
   const checks = document.querySelectorAll(".selecionado");
 
-  let y = 20;
+  let primeiraPagina = true;
 
   checks.forEach((check, i) => {
 
-    if (check.checked) {
+    if (!check.checked) return;
 
-      const canto = cantos[i];
-
-      pdf.setFontSize(18);
-      pdf.text(canto.momento, 15, y);
-
-      y += 10;
-
-      pdf.setFontSize(16);
-      pdf.text(canto.nome, 15, y);
-
-      y += 10;
-
-      pdf.setFontSize(11);
-
-      const linhas = pdf.splitTextToSize(canto.letra, 180);
-
-      pdf.text(linhas, 15, y);
-
+    if (!primeiraPagina) {
       pdf.addPage();
-
-      y = 20;
-
     }
+
+    primeiraPagina = false;
+
+    const canto = cantos[i];
+
+    let y = 15;
+
+    // Momento
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(18);
+    pdf.text(canto.momento.toUpperCase(), 105, y, { align: "center" });
+
+    y += 12;
+
+    // Nome do canto
+    pdf.setFontSize(22);
+    pdf.text(canto.nome, 105, y, { align: "center" });
+
+    y += 12;
+
+    // Letra
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(16);
+
+    const linhas = pdf.splitTextToSize(canto.letra, 185);
+
+    pdf.text(linhas, 12, y);
 
   });
 
