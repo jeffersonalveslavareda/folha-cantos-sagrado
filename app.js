@@ -9,7 +9,11 @@ fetch(API)
     data.forEach(canto => {
       const item = document.createElement("li");
 
-      item.textContent = JSON.stringify(canto);
+      item.innerHTML = `
+<strong>${canto.nome}</strong><br>
+Momento: ${canto.momento}<br>
+Tempo Litúrgico: ${canto.tempoLiturgico}
+`;
 
       lista.appendChild(item);
     });
