@@ -1,25 +1,27 @@
-const API = "https://script.google.com/macros/s/AKfycbykpjcvRXV4zqUgAh7joIgrq-9gIL9yxpF7A5it0n43yXtBoGxie_nOdSEqN3RLHgdSgA/exec";
+const API = "COLE_AQUI_A_MESMA_URL_DO_GOOGLE_SCRIPT";
 
 fetch(API)
   .then(response => response.json())
   .then(data => {
 
-    const lista = document.createElement("ul");
+    const container = document.createElement("div");
+    container.className = "container-cantos";
 
     data.forEach(canto => {
-      const item = document.createElement("li");
 
-      item.innerHTML = `
-<strong>${canto.nome}</strong><br>
-Momento: ${canto.momento}<br>
-Tempo Litúrgico: ${canto.tempoLiturgico}
-`;
+      const card = document.createElement("div");
+      card.className = "card-canto";
 
-      lista.appendChild(item);
+      card.innerHTML = `
+        <h3>🎵 ${canto.nome}</h3>
+        <p>📖 <strong>Momento:</strong> ${canto.momento}</p>
+        <p>⛪ <strong>Tempo Litúrgico:</strong> ${canto.tempoLiturgico}</p>
+      `;
+
+      container.appendChild(card);
     });
 
-    document.body.appendChild(lista);
-
+    document.body.appendChild(container);
   })
   .catch(error => {
     console.error(error);
