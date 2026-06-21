@@ -3,7 +3,19 @@ const API = "https://script.google.com/macros/s/AKfycbykpjcvRXV4zqUgAh7joIgrq-9g
 fetch(API)
   .then(response => response.json())
   .then(data => {
-    console.log(data);
+
+    const lista = document.createElement("ul");
+
+    data.forEach(canto => {
+      const item = document.createElement("li");
+
+      item.textContent = JSON.stringify(canto);
+
+      lista.appendChild(item);
+    });
+
+    document.body.appendChild(lista);
+
   })
   .catch(error => {
     console.error(error);
