@@ -1,33 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
-    margin: 0;
-    padding: 20px;
+  background: #f5f5f5;
 }
 
-h1 {
-    text-align: center;
-    color: #8b0000;
+header {
+  background: #1f4e79;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
 
-.container-cantos {
-    max-width: 1000px;
-    margin: auto;
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 15px;
 }
 
-.card-canto {
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+#pesquisa {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
 }
 
-.card-canto h3 {
-    margin-top: 0;
-    color: #8b0000;
+.canto {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
 }
 
-.card-canto p {
-    margin: 5px 0;
+.canto h3 {
+  color: #1f4e79;
+  margin-bottom: 8px;
+}
+
+.canto p {
+  margin: 5px 0;
+}
+
+.canto label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background: #1f4e79;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background: #163b5c;
 }
