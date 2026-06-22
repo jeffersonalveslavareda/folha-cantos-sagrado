@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Cantos Sagrados</title>
 
   <link rel="stylesheet" href="style.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 </head>
 
 <body>
@@ -18,21 +22,66 @@
 
 <div class="container">
 
-  <input
-    type="text"
-    id="pesquisa"
-    placeholder="Pesquisar canto..."
-  >
+  <!-- ETAPA 1 -->
+  <div id="dadosCelebracao">
 
-  <div id="listaCantos"></div>
+    <h2>Dados da Celebração</h2>
 
-  <button id="gerarPDF">
-    Gerar PDF
-  </button>
+    <label>Comunidade</label>
+    <input
+      type="text"
+      id="comunidade"
+      placeholder="Ex.: Comunidade São José">
+
+    <label>Celebração</label>
+    <input
+      type="text"
+      id="celebracao"
+      placeholder="Ex.: 18º Domingo do Tempo Comum">
+
+    <label>Data</label>
+    <input
+      type="date"
+      id="dataCelebracao">
+
+    <label>Celebrante (opcional)</label>
+    <input
+      type="text"
+      id="celebrante"
+      placeholder="Ex.: Pe. João">
+
+    <label>Observações (opcional)</label>
+    <textarea
+      id="observacoes"
+      rows="3"
+      placeholder="Alguma observação..."></textarea>
+
+    <button id="btnContinuar">
+      Continuar
+    </button>
+
+  </div>
+
+  <!-- ETAPA 2 -->
+  <div id="selecaoCantos" style="display:none;">
+
+    <input
+      type="text"
+      id="pesquisa"
+      placeholder="Pesquisar canto...">
+
+    <div id="listaCantos"></div>
+
+    <button id="gerarPDF">
+      Gerar PDF
+    </button>
+
+  </div>
 
 </div>
 
 <script src="app.js"></script>
 
 </body>
+
 </html>
