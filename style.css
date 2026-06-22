@@ -130,23 +130,39 @@ input[type="checkbox"]{
     margin-top:4px;
 }
 
+/* ===== NOVO: GRUPOS POR MOMENTO LITÚRGICO ===== */
+
+.grupoMomento{
+    margin-bottom:30px;
+}
+
+.grupoMomento h2{
+    background:#1f4e79;
+    color:#fff;
+    padding:12px 15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.10);
+}
+
 @media(max-width:768px){
 
-header h1{
-    font-size:30px;
-}
+    header h1{
+        font-size:30px;
+    }
 
-.container{
-    padding:15px;
-    margin:20px auto;
-}
+    .container{
+        padding:15px;
+        margin:20px auto;
+    }
 
-#dadosCelebracao{
-    padding:20px;
-}
+    #dadosCelebracao{
+        padding:20px;
+    }
 
-button{
-    font-size:18px;
-}
+    button{
+        font-size:18px;
+    }
 
 }
