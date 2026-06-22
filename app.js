@@ -37,7 +37,7 @@ document.getElementById("btnContinuar").addEventListener("click", () => {
 });
 
 // ===============================
-// CARREGA CANTOS
+// CARREGAR CANTOS
 // ===============================
 
 async function carregarCantos() {
@@ -66,10 +66,10 @@ async function carregarCantos() {
 carregarCantos();
 
 // ===============================
-// MOSTRAR CANTOS
+// MOSTRAR CANTOS AGRUPADOS
 // ===============================
 
-function mostrarCantos(lista) {
+function mostrarCantos(lista){
 
     cantosExibidos = lista;
 
@@ -77,37 +77,66 @@ function mostrarCantos(lista) {
 
     div.innerHTML = "";
 
-    lista.forEach((canto, indice) => {
+    const grupos = {};
+
+    lista.forEach(canto => {
+
+        if(!grupos[canto.momento]){
+            grupos[canto.momento] = [];
+        }
+
+        grupos[canto.momento].push(canto);
+
+    });
+
+    Object.keys(grupos).forEach(momento => {
+
+        const idGrupo = momento.replace(/[^a-zA-Z0-9]/g,"");
 
         div.innerHTML += `
-            <div class="canto">
+            <div class="grupoMomento">
 
-                <label>
+                <h2>${momento}</h2>
 
-                    <input
-                        type="checkbox"
-                        class="selecionado"
-                        data-index="${indice}">
-
-                    <div>
-
-                        <h3>${canto.nome}</h3>
-
-                        <p><strong>Momento:</strong> ${canto.momento}</p>
-
-                        <p><strong>Tempo:</strong> ${canto.tempoLiturgico}</p>
-
-                    </div>
-
-                </label>
+                <div id="${idGrupo}"></div>
 
             </div>
         `;
 
+        const grupo = document.getElementById(idGrupo);
+
+        grupos[momento].forEach(canto => {
+
+            const indice = cantosExibidos.indexOf(canto);
+
+            grupo.innerHTML += `
+                <div class="canto">
+
+                    <label>
+
+                        <input
+                            type="checkbox"
+                            class="selecionado"
+                            data-index="${indice}">
+
+                        <div>
+
+                            <h3>${canto.nome}</h3>
+
+                            <p><strong>Tempo:</strong> ${canto.tempoLiturgico}</p>
+
+                        </div>
+
+                    </label>
+
+                </div>
+            `;
+
+        });
+
     });
 
 }
-
 // ===============================
 // PESQUISA
 // ===============================
