@@ -168,8 +168,8 @@ document.getElementById("gerarPDF").addEventListener("click", () => {
 const { jsPDF } = window.jspdf;
 const pdf = new jsPDF();
 
-const logo = new Image();
-logo.src = "logo.png";
+const logo =
+"https://jeffersonalveslavareda.github.io/folha-cantos-sagrado/logo.png";
 
 const comunidade = document.getElementById("comunidade").value;
 const celebracao = document.getElementById("celebracao").value;
@@ -178,7 +178,7 @@ const celebrante = document.getElementById("celebrante").value;
 const equipe = document.getElementById("equipe").value;
 
 // LOGO CENTRALIZADA
-pdf.addImage(logo, "PNG", 55, 20, 100, 100);
+pdf.addImage(logo, "PNG", 35, 20, 140, 140);
 
 // TÍTULO
 pdf.setFont("helvetica", "bold");
@@ -195,19 +195,6 @@ pdf.text(`Celebrante: ${celebrante}`, 20, 205);
 
 const equipeLinhas = pdf.splitTextToSize(`Equipe: ${equipe}`, 170);
 pdf.text(equipeLinhas, 20, 220);
-
-pdf.setFontSize(18);
-pdf.text("Folha de Cantos", 105, 50, { align: "center" });
-
-pdf.setFont("helvetica", "normal");
-pdf.setFontSize(14);
-
-pdf.text(`Celebração: ${celebracao}`, 20, 80);
-pdf.text(`Data: ${data}`, 20, 95);
-pdf.text(`Celebrante: ${celebrante}`, 20, 110);
-
-const equipeLinhas = pdf.splitTextToSize(`Equipe: ${equipe}`, 170);
-pdf.text(equipeLinhas, 20, 125);
 
 const checks = document.querySelectorAll(".selecionado");
 
