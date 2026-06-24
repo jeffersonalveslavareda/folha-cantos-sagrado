@@ -168,17 +168,11 @@ document.getElementById("gerarPDF").addEventListener("click", () => {
 const { jsPDF } = window.jspdf;
 const pdf = new jsPDF();
 
-const logo =
-"https://jeffersonalveslavareda.github.io/folha-cantos-sagrado/logo.png";
-
 const comunidade = document.getElementById("comunidade").value;
 const celebracao = document.getElementById("celebracao").value;
 const data = document.getElementById("dataCelebracao").value;
 const celebrante = document.getElementById("celebrante").value;
 const equipe = document.getElementById("equipe").value;
-
-// LOGO CENTRALIZADA
-pdf.addImage(logo, "PNG", 35, 20, 140, 140);
 
 // TÍTULO
 pdf.setFont("helvetica", "bold");
