@@ -224,3 +224,4 @@ const nomeArquivo =
 .replaceAll(" ", "_");
 
 pdf.save(nomeArquivo);
+    });
