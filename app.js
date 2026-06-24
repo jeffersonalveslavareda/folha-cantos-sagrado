@@ -167,11 +167,32 @@ document.getElementById("gerarPDF").addEventListener("click", () => {
 
     const { jsPDF } = window.jspdf;
 
-    const pdf = new jsPDF();
+    const comunidade = document.getElementById("comunidade").value;
+const celebracao = document.getElementById("celebracao").value;
+const data = document.getElementById("dataCelebracao").value;
+const celebrante = document.getElementById("celebrante").value;
+const equipe = document.getElementById("equipe").value;
+
+pdf.setFontSize(22);
+pdf.setFont("helvetica", "bold");
+pdf.text("COMUNIDADE SAGRADO CORAÇÃO DE JESUS", 105, 30, { align: "center" });
+
+pdf.setFontSize(18);
+pdf.text("Folha de Cantos", 105, 50, { align: "center" });
+
+pdf.setFontSize(14);
+pdf.setFont("helvetica", "normal");
+
+pdf.text(`Celebração: ${celebracao}`, 20, 80);
+pdf.text(`Data: ${data}`, 20, 95);
+pdf.text(`Celebrante: ${celebrante}`, 20, 110);
+
+const equipeLinhas = pdf.splitTextToSize(`Equipe: ${equipe}`, 170);
+pdf.text(equipeLinhas, 20, 125);
 
     const checks = document.querySelectorAll(".selecionado");
 
-    let primeiraPagina = true;
+    let primeiraPagina = false;
 
     checks.forEach(check => {
 
