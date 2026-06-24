@@ -177,10 +177,24 @@ const data = document.getElementById("dataCelebracao").value;
 const celebrante = document.getElementById("celebrante").value;
 const equipe = document.getElementById("equipe").value;
 
-// CAPA
+// LOGO CENTRALIZADA
+pdf.addImage(logo, "PNG", 55, 20, 100, 100);
+
+// TÍTULO
 pdf.setFont("helvetica", "bold");
-pdf.setFontSize(20);
-pdf.text(comunidade.toUpperCase(), 105, 30, { align: "center" });
+pdf.setFontSize(18);
+pdf.text("FOLHA DE CANTOS", 105, 135, { align: "center" });
+
+pdf.setFont("helvetica", "normal");
+pdf.setFontSize(14);
+
+pdf.text(`Comunidade: ${comunidade}`, 20, 160);
+pdf.text(`Celebração: ${celebracao}`, 20, 175);
+pdf.text(`Data: ${data}`, 20, 190);
+pdf.text(`Celebrante: ${celebrante}`, 20, 205);
+
+const equipeLinhas = pdf.splitTextToSize(`Equipe: ${equipe}`, 170);
+pdf.text(equipeLinhas, 20, 220);
 
 pdf.setFontSize(18);
 pdf.text("Folha de Cantos", 105, 50, { align: "center" });
