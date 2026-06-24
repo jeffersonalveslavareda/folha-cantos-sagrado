@@ -198,11 +198,13 @@ document.getElementById("gerarPDF").addEventListener("click", () => {
         y += 12;
 
         pdf.setFont("helvetica", "normal");
-        pdf.setFontSize(15);
+        pdf.setFontSize(20);
 
         const linhas = pdf.splitTextToSize(canto.letra, 185);
 
-        pdf.text(linhas, 12, y);
+        pdf.text(linhas, 10, y, {
+    lineHeightFactor: 1.8
+});
 
     });
 
