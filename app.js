@@ -165,7 +165,6 @@ document.getElementById("pesquisa").addEventListener("input", function () {
 
 document.getElementById("gerarPDF").addEventListener("click", () => {
 
-```
 const { jsPDF } = window.jspdf;
 const pdf = new jsPDF();
 
@@ -229,7 +228,6 @@ checks.forEach(check => {
         lineHeightFactor: 1.8
     });
 
-    // LINK YOUTUBE
     if (canto.youtube) {
 
         pdf.setFontSize(10);
@@ -253,10 +251,9 @@ if (selecionados === 0) {
 }
 
 const nomeArquivo =
-    `Missa-${celebracao}-${data}.pdf`
-        .replaceAll(" ", "_");
+`Missa-${celebracao}-${data}.pdf`
+.replaceAll(" ", "_");
 
 pdf.save(nomeArquivo);
-```
 
 });
