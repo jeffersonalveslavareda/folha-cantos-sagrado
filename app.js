@@ -168,6 +168,9 @@ document.getElementById("gerarPDF").addEventListener("click", () => {
 const { jsPDF } = window.jspdf;
 const pdf = new jsPDF();
 
+const logo = new Image();
+logo.src = "logo.png";
+
 const comunidade = document.getElementById("comunidade").value;
 const celebracao = document.getElementById("celebracao").value;
 const data = document.getElementById("dataCelebracao").value;
