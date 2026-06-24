@@ -214,6 +214,11 @@ document.getElementById("gerarPDF").addEventListener("click", () => {
 
     }
 
-    pdf.save("Folha-de-Cantos.pdf");
+    const celebracao = document.getElementById("celebracao").value;
+const data = document.getElementById("dataCelebracao").value;
 
-});
+const nomeArquivo =
+`Missa-${celebracao}-${data}.pdf`
+.replaceAll(" ", "_");
+
+pdf.save(nomeArquivo);
