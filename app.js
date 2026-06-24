@@ -165,23 +165,26 @@ document.getElementById("pesquisa").addEventListener("input", function () {
 
 document.getElementById("gerarPDF").addEventListener("click", () => {
 
-    const { jsPDF } = window.jspdf;
+```
+const { jsPDF } = window.jspdf;
+const pdf = new jsPDF();
 
-    const comunidade = document.getElementById("comunidade").value;
+const comunidade = document.getElementById("comunidade").value;
 const celebracao = document.getElementById("celebracao").value;
 const data = document.getElementById("dataCelebracao").value;
 const celebrante = document.getElementById("celebrante").value;
 const equipe = document.getElementById("equipe").value;
 
-pdf.setFontSize(22);
+// CAPA
 pdf.setFont("helvetica", "bold");
-pdf.text("COMUNIDADE SAGRADO CORAÇÃO DE JESUS", 105, 30, { align: "center" });
+pdf.setFontSize(20);
+pdf.text(comunidade.toUpperCase(), 105, 30, { align: "center" });
 
 pdf.setFontSize(18);
 pdf.text("Folha de Cantos", 105, 50, { align: "center" });
 
-pdf.setFontSize(14);
 pdf.setFont("helvetica", "normal");
+pdf.setFontSize(14);
 
 pdf.text(`Celebração: ${celebracao}`, 20, 80);
 pdf.text(`Data: ${data}`, 20, 95);
@@ -190,59 +193,70 @@ pdf.text(`Celebrante: ${celebrante}`, 20, 110);
 const equipeLinhas = pdf.splitTextToSize(`Equipe: ${equipe}`, 170);
 pdf.text(equipeLinhas, 20, 125);
 
-    const checks = document.querySelectorAll(".selecionado");
+const checks = document.querySelectorAll(".selecionado");
 
-    let primeiraPagina = false;
+let selecionados = 0;
 
-    checks.forEach(check => {
+checks.forEach(check => {
 
-        if (!check.checked) return;
+    if (!check.checked) return;
 
-        const canto = cantosExibidos[check.dataset.index];
+    selecionados++;
 
-        if (!primeiraPagina)
-            pdf.addPage();
+    const canto = cantosExibidos[check.dataset.index];
 
-        primeiraPagina = false;
+    pdf.addPage();
 
-        let y = 15;
+    let y = 15;
 
-        pdf.setFont("helvetica", "bold");
-        pdf.setFontSize(18);
-        pdf.text(canto.momento.toUpperCase(), 105, y, { align: "center" });
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(18);
+    pdf.text(canto.momento.toUpperCase(), 105, y, { align: "center" });
 
-        y += 12;
+    y += 12;
 
-        pdf.setFontSize(22);
-        pdf.text(canto.nome, 105, y, { align: "center" });
+    pdf.setFontSize(22);
+    pdf.text(canto.nome, 105, y, { align: "center" });
 
-        y += 12;
+    y += 15;
 
-        pdf.setFont("helvetica", "normal");
-        pdf.setFontSize(20);
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(20);
 
-        const linhas = pdf.splitTextToSize(canto.letra, 185);
+    const linhas = pdf.splitTextToSize(canto.letra, 185);
 
-        pdf.text(linhas, 10, y, {
-    lineHeightFactor: 1.8
-});
-
+    pdf.text(linhas, 10, y, {
+        lineHeightFactor: 1.8
     });
 
-    if (primeiraPagina) {
+    // LINK YOUTUBE
+    if (canto.youtube) {
 
-        alert("Selecione pelo menos um canto.");
+        pdf.setFontSize(10);
 
-        return;
+        pdf.textWithLink(
+            "Ouvir no YouTube",
+            10,
+            285,
+            { url: canto.youtube }
+        );
 
     }
 
-    const celebracao = document.getElementById("celebracao").value;
-const data = document.getElementById("dataCelebracao").value;
+});
+
+if (selecionados === 0) {
+
+    alert("Selecione pelo menos um canto.");
+    return;
+
+}
 
 const nomeArquivo =
-`Missa-${celebracao}-${data}.pdf`
-.replaceAll(" ", "_");
+    `Missa-${celebracao}-${data}.pdf`
+        .replaceAll(" ", "_");
 
 pdf.save(nomeArquivo);
-    });
+```
+
+});
