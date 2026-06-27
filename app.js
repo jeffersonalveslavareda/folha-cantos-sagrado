@@ -1,4 +1,4 @@
-const API = "https://script.google.com/macros/s/AKfycbxMNfGlOLzKieGlmSzeTjnbK3rQ9Yp546u1aW0t_nBUS3X3Vuy91AKy8ZOXyhePDDzjsA/exec";
+const API = "https://script.google.com/macros/s/AKfycbwEjYFmelZB130H2Owip1G5K6MaG5yn7gPqBGG9HMsIfWFgQmUMqT9SVOCI7z9LIQ7C3w/exec";
 
 let cantos = [];
 let cantosExibidos = [];
