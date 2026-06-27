@@ -234,24 +234,39 @@ checks.forEach(check => {
     pdf.setFont("helvetica", "normal");
     pdf.setFontSize(20);
 
-    const linhas = pdf.splitTextToSize(canto.letra, 185);
+   const linhas = pdf.splitTextToSize(canto.letra, 185);
 
-    pdf.text(linhas, 10, y, {
-        lineHeightFactor: 1.8
-    });
+pdf.text(linhas, 10, y, {
+    lineHeightFactor: 1.8
+});
 
-    if (canto.youtube) {
+// ===============================
+// RODAPÉ COM LINK DO YOUTUBE
+// ===============================
+if (canto.youtube && canto.youtube.trim() !== "") {
 
-        pdf.setFontSize(10);
+    pdf.setDrawColor(180);
+    pdf.line(10, 285, 200, 285);
 
-        pdf.textWithLink(
-            "Ouvir no YouTube",
-            10,
-            285,
-            { url: canto.youtube }
-        );
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(8);
 
-    }
+    pdf.setTextColor(0, 0, 0);
+    pdf.text("YouTube:", 10, 290);
+
+    pdf.setTextColor(0, 0, 255);
+
+    pdf.textWithLink(
+        canto.youtube,
+        25,
+        290,
+        {
+            url: canto.youtube
+        }
+    );
+
+    pdf.setTextColor(0, 0, 0);
+}
 
 });
 
@@ -263,8 +278,8 @@ if (selecionados === 0) {
 }
 
 const nomeArquivo =
-`Missa-${celebracao}-${data}.pdf`
-.replaceAll(" ", "_");
+    `Missa-${celebracao}-${data}.pdf`
+        .replaceAll(" ", "_");
 
 pdf.save(nomeArquivo);
 
